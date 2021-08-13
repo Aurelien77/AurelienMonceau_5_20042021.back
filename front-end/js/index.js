@@ -9,8 +9,22 @@ let product_sheet = fetch('http://localhost:3000/api/teddies')
 for (let o of response)  {
 
   const affiche = document.getElementById('ourson');
-  affiche.innerHTML +=  o;
+  affiche.innerHTML += o.imageUrl += "----------------------------------------";
+  affiche.innerHTML += o.name += "----------------------------------------" ;
+  affiche.innerHTML += o._id += "----------------------------------------" ;
+  affiche.innerHTML += o.colors += "----------------------------------------" ;
+  affiche.innerHTML += o.price += "----------------------------------------" ;
+  affiche.innerHTML += o.description += "----------------------------------------" ;
   console.log (o); 
+
+
+
+      
+        
+
+
+
+
 
 }
 

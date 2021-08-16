@@ -9,6 +9,32 @@
   border: 4px solid black;
 }
 
+.tailleimg {
+  box-sizing: border-box;
+  width: 70%;
+  height: 70%;
+  border-radius: 40px;
+}
+
+.card-body {
+  border: 2px solid silver;
+  /* brown */
+}
+
+/* .bs-blue {
+  opacity: 50%;
+
+} */
+.texture {
+  background-color: springgreen;
+}
+
+.btn-outline-primary {
+  color: #0d6efd;
+  border-color: #0d6efd;
+  margin: 20px;
+}
+
 /*!
  * Bootstrap v5.1.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -11122,22 +11148,13 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-.ourson {
-  background-color: aqua;
-}
-
-.affichourson {
-  background: #5fec52;
-  display: flex;
-}
-
-#ourson {
-  background: #5fec52;
-  display: flex;
-}
-
-p {
-  color: red;
+body {
+  background: url("../image/bois.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  box-sizing: border-box;
 }
 
 /*# sourceMappingURL=style.css.map */

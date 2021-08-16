@@ -1,4 +1,4 @@
-//création d'une requête vers l'api qui est renvoyé au fichier .json
+
 //La console indique en logs : 5 sections de nounours 
 /* class Teddies {
 constructor(jsonTeddies){
@@ -15,6 +15,8 @@ constructor(jsonTeddies){
 
 /* fetch('http://localhost:3000/api/teddies')
 .then( data => data.json())
+
+
 .then ( jsonListTeddies=> {
 /* console.log(jsonListArticle); */
 /* for {let jsonTeddies  of jsonListTeddies) {
@@ -25,127 +27,83 @@ document.getElementById('ourson1').innerHTML += data.name ;
 }
 
 }); */
+
+//création d'une requête vers l'api qui est renvoyé au fichier .json
+const product_sheet = fetch("http://localhost:3000/api/teddies")
+    .then((response) => {
+        return response.json();
+    })
+    .then((response) => {
+        for (let o of response) {      //création d'une variable appelée "O" avec les résultats de la requête.json
+            console.log(o);
+             //On pointe l'id "OursonTemplate"
+           
+            const Template = document.getElementById("OursonTemplate");
+
+            //On cré uone constante avec l'importation de tous les noeuds "<template> .. .. </template>" 
+            const CopieTemplate = document.importNode(Template.content, true);
+ //les noeuds du templates sont importés pour accueillir la constante "o" du fichier.json + les sections de l'API
+ /* sections de l'API reccueillit lors du  "console.log(o)" */
+
+  /* <!> pas de innerHTML += Securité */
+  /* Varialbe o + informations récupérées lors du concole.log */
+ CopieTemplate.getElementById("imagesours").src = o.imageUrl;
+            CopieTemplate.getElementById("nomsours").textContent = o.name;
+            CopieTemplate.getElementById("prixours").textContent= o.price / 100 + "€";
+            /* Création de l'appendchild (élément enfant) sous le calque avec l'ID "sections" => ici la copie du template x 5*/
+                CopieTemplate.getElementById("descriptionours").textContent= o.description;
+  /* absence de guillemet ou de cotes pour o + valeurs / afin d'ajouter du texte et l'opération qui divise les centimes*/
+
+/* Définition de l'envoi de l'ID vers l'url */
+ CopieTemplate.getElementById("link").href += "?id=" + o._id;
+
+
+            document.getElementById("sections").appendChild(CopieTemplate);
+        }   
+    });  
+  
+  
+
  
 
 
-let product_sheet =   fetch('http://localhost:3000/api/teddies')
-  .then((response) => {
-  return response.json();
-  })
-  
-  .then((response) => {
-for (let o of response)  {
+
                               /* Création du premier élément div  */
   /* ------------------------------------------------------------------------------------ */
 
-  const nounoursDiv = document.getElementById('ourson');
+ /*  const nounoursDiv = document.querySelector('.ourson');
   // On ajoute une section à l'élément div dans une constante appelée nounoursSection
   const nounoursSection = document.createElement('section' );
   // On indique que la la constante nounoursdiv est parent de nounourssection 
   nounoursDiv.appendChild(nounoursSection);
   // On ajoute une class à la section appellée affichageoursons 
-  nounoursSection.id = 'affichourson';
+  nounoursSection.className = 'affichourson'; */
 
 /* ------------------------------------------------------------------------------------------ */
 
                             /* Création du deuxième élément div  */
   /* ------------------------------------------------------------------------------------ */
-  const nounoursDiv1 = document.getElementById('ourson1');
-  // On ajoute une section à l'élément div dans une constante appelée nounoursSection
-  const nounoursSection1 = document.createElement('section');
-  // On indique que la la constante nounoursdiv est parent de nounourssection 
-  nounoursDiv1.appendChild(nounoursSection1);
-  
-  // On ajoute une class à la section appellée affichageoursons 
-  
-  nounoursSection1.id = 'affichourson1'; 
 
-
-/* ------------------------------------------------------------------------------------------ */
 
 
                             /* Création du troisème élément div  */
   /* ------------------------------------------------------------------------------------ */
-  const nounoursDiv2 = document.getElementById('ourson2');
-  // On ajoute une section à l'élément div dans une constante appelée nounoursSection
-  const nounoursSection2 = document.createElement('section');
-  // On indique que la la constante nounoursdiv est parent de nounourssection 
-  nounoursDiv2.appendChild(nounoursSection2);
   
-  // On ajoute une class à la section appellée affichageoursons 
-  
-  nounoursSection2.id = 'affichourson2'; 
+ 
+
 
 
 /* ------------------------------------------------------------------------------------------ */
 
-                            /* Création du quatrième élément div  */
-  /* ------------------------------------------------------------------------------------ */
-  const nounoursDiv3 = document.getElementById('ourson3');
-  // On ajoute une section à l'élément div dans une constante appelée nounoursSection
-  const nounoursSection3 = document.createElement('section');
-  // On indique que la la constante nounoursdiv est parent de nounourssection 
-  nounoursDiv3.appendChild(nounoursSection3);
-  
-  // On ajoute une class à la section appellée affichageoursons 
-  
-  nounoursSection3.id = 'affichourson3'; 
-
-
-/* ------------------------------------------------------------------------------------------ */
-
-                            /* Création du conquième élément div  */
-  /* ------------------------------------------------------------------------------------ */
-  const nounoursDiv4 = document.getElementById('ourson4');
-  // On ajoute une section à l'élément div dans une constante appelée nounoursSection
-  const nounoursSection4 = document.createElement('section');
-  // On indique que la la constante nounoursdiv est parent de nounourssection 
-  nounoursDiv4.appendChild(nounoursSection4);
-  
-  // On ajoute une class à la section appellée affichageoursons 
-  
-  nounoursSection4.id = 'affichourson4'; 
-
-
-/* ------------------------------------------------------------------------------------------ */
-
-const affiche = document.getElementById('affichourson');
+/* const affiche = document.querySelector('.affichourson');
 
 const array = [1,2,3];
-  
-document.getElementById('affichourson').innerHTML += o.name  +=  o.colors +=  o.price  +=  o.imageUrl += o.description+= o._id += "-------<p>Son nom, sa couleur, son prix, l'url de son image sa déscription et son Id</p>-------";
 
+document.querySelector('affichourson').innerHTML += o.name +=o.imageUrl +=  o.colors +=  o.price  += o.description+= o._id += "-------<p>Son nom, sa couleur, son prix, l'url de son image sa déscription et son Id</p>-------";
+document.querySelector('oursonImg').innerHTML += o.imageUrl; */
 /* ------------------------------------------------------------------------------------------ */
 
-const affiche1 = document.getElementById('affichourson1');
 
-  
-  
-document.getElementById('affichourson1').innerHTML +=o.name +=  o.name +=  o.colors +=  o.price  +=  o.imageUrl += o.description+= "-------Son nom et sa couleur-------";
-
-/* ------------------------------------------------------------------------------------------ */
-
-const affiche2 = document.getElementById('affichourson2');
-
-  
-  
-document.getElementById('affichourson2').innerHTML   +=  o.name +=  o.colors +=  o.price  += o.imageUrl += o.description+= "-------Son nom et sa couleur-------";
-
-
-/* ------------------------------------------------------------------------------------------ */
-const affiche3 = document.getElementById('affichourson3');
-
-  
-  
-document.getElementById('affichourson3').innerHTML +=  o.name +=  o.colors +=  o.price  +=  o.imageUrl += o.description+= "-------Son nom et sa couleur-------";
-  /* ------------------------------------------------------------------------------------------ */
-
-const affiche4 = document.getElementById('affichourson4');
-
-  
-  
-document.getElementById('affichourson4').innerHTML +=  o.name +=  o.colors +=  o.price  +=  o.imageUrl += o.description+= "-------Son nom et sa couleur-------";
-  console.log (o); 
 
 
 
@@ -156,16 +114,6 @@ document.getElementById('affichourson4').innerHTML +=  o.name +=  o.colors +=  o
 
 
 
-}
-
-     
-    
-console.log (response); 
- 
-    
-
- 
-})
 
 
 

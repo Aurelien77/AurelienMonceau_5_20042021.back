@@ -51,15 +51,36 @@
   box-shadow: rgb(41, 29, 29) 5px 5px 5px 5px;
 }
 
+.card2 {
+  border: 0px;
+
+  box-shadow: rgb(41, 29, 29) 1px 1px 1px 1px;
+  margin-top: 2px;
+  background-color: rgb(151, 168, 173);
+  &:hover {
+    color: rgb(247, 7, 7);
+    background-color: white;
+  }
+}
+.card3 {
+  border: 0px;
+  background-color: white;
+  border-radius: 40px;
+  color: black;
+  &:hover {
+    color: rgb(247, 7, 7);
+  }
+}
+
 .card-body {
 }
 .btn-outline-primary {
-  color: #fff;
+  color: rgb(20, 20, 20);
   border-color: #0d6efd;
-  background-color: rgb(134, 143, 143);
+  background-color: rgb(154, 184, 184);
 }
 .btn-outline-primary:hover {
-  color: #fff;
+  color: rgb(255, 255, 255);
   background-color: #0468fd;
   border-color: #0d6efd;
   margin-top: -10px;

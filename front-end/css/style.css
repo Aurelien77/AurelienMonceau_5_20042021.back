@@ -11238,14 +11238,35 @@ ul {
   box-shadow: #291d1d 5px 5px 5px 5px;
 }
 
+.card2 {
+  border: 0px;
+  box-shadow: #291d1d 1px 1px 1px 1px;
+  margin-top: 2px;
+  background-color: #97a8ad;
+}
+.card2:hover {
+  color: #f70707;
+  background-color: white;
+}
+
+.card3 {
+  border: 0px;
+  background-color: white;
+  border-radius: 40px;
+  color: black;
+}
+.card3:hover {
+  color: #f70707;
+}
+
 .btn-outline-primary {
-  color: #fff;
+  color: #141414;
   border-color: #0d6efd;
-  background-color: #868f8f;
+  background-color: #9ab8b8;
 }
 
 .btn-outline-primary:hover {
-  color: #fff;
+  color: white;
   background-color: #0468fd;
   border-color: #0d6efd;
   margin-top: -10px;

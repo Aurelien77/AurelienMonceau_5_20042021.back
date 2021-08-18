@@ -28,6 +28,7 @@ function getArticle(articleId) {
 }
 
 function displayArticle(article) {
- document.getElementById("ourson").textContent = article.name
-  document.getElementById("ourson1").textContent = article.price 
+ document.getElementById("nomsours").textContent = article.name
+  document.getElementById("prixours").textContent  = article.price / 100 + "€" 
+  document.getElementById("imagesours").src = article.imageUrl;
 }  

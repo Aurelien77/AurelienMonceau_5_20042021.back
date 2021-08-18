@@ -11159,7 +11159,7 @@ textarea.form-control-lg {
   }
 }
 body {
-  background: url("../image/bois.jpg") no-repeat center center fixed;
+  background: url("../image/bois3.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -11228,8 +11228,8 @@ ul {
 }
 
 .pad {
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 7%;
+  padding-right: 7%;
 }
 
 .card {

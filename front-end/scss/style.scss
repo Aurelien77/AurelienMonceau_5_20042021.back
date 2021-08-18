@@ -35,16 +35,38 @@
 
   width: 100%;
   height: 230px;
-  /* background-color: #212529; */
+
   border-radius: 20px;
-  box-shadow: rgb(41, 29, 29) 5px 5px 5px 5px;
 }
 
+.imgresize2 {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: 230px;
+
+  border-radius: 20px;
+}
+.menubout {
+  font-size: 40px;
+}
+
+.menupanier {
+  font-size: 40px;
+}
 .pad {
-  padding-left: 7%;
-  padding-right: 7%;
+  padding-left: 1%;
+  padding-right: 1%;
 }
-
+.flexnav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: space-around;
+  justify-content: center;
+  width: 100%;
+}
 .card {
   border: 0px;
   border-radius: 40px;
@@ -72,6 +94,30 @@
   }
 }
 
+.card4 {
+  border: 0px;
+  background-color: white;
+  border-radius: 40px;
+  color: black;
+  height: 100%;
+  padding-bottom: 15px;
+  border-radius: 20px;
+  &:hover {
+    color: rgb(247, 7, 7);
+  }
+}
+.card5 {
+  border: 0px;
+  border-radius: 20px;
+  box-shadow: rgb(41, 29, 29) 1px 1px 1px 1px;
+  margin-top: 2px;
+  background-color: silver;
+  &:hover {
+    color: rgb(247, 7, 7);
+    background-color: white;
+  }
+}
+
 .card-body {
 }
 .btn-outline-primary {
@@ -92,6 +138,7 @@
 }
 
 .footer {
+  z-index: 11;
   font-size: 30px;
   display: flex;
   flex-direction: row;
@@ -107,6 +154,68 @@
     box-shadow: rgb(41, 29, 29) 5px 5px 5px 5px;
   }
 }
+
+.payer {
+  font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  color: rgb(250, 243, 243);
+  @include centre;
+  gap: 50px;
+  margin-top: 20px;
+  li {
+    background-color: rgb(95, 87, 87);
+    border-radius: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: rgb(41, 29, 29) 5px 5px 5px 5px;
+    &:hover {
+      background-color: rgb(248, 8, 8);
+    }
+  }
+}
+.imgpos {
+  position: relative;
+  z-index: 1;
+  margin-top: 0px;
+
+  img {
+    width: 100%;
+    height: 50px;
+  }
+}
+.choix {
+  &:hover {
+  }
+}
+
+.gradient-custom {
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
+  /* fallback for old browsers */
+  background: #d299c2;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(210, 153, 194, 0.5),
+    rgba(254, 249, 215, 0.5)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to right,
+    rgba(210, 153, 194, 0.5),
+    rgba(254, 249, 215, 0.5)
+  );
+}
+.oursanim {
+  img {
+    height: 200px;
+    width: 100%;
+  }
+}
+
 /*Autre médie que Desktop----------- */
 @media only screen and (max-width: 1500px) {
   .flexlign {
@@ -117,7 +226,17 @@
 
   .tailleimg {
     width: 100%;
-    height: 70%;
+    height: 440px;
     border-radius: 40px;
+  }
+}
+
+.imgpos {
+  position: relative;
+  margin-top: 0px;
+
+  img {
+    width: 100%;
+    height: 50px;
   }
 }

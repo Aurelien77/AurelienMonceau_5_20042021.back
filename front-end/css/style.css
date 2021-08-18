@@ -11228,8 +11228,8 @@ ul {
 }
 
 .pad {
-  padding-left: 130px;
-  padding-right: 130px;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .card {
@@ -11307,7 +11307,7 @@ ul {
 
   .tailleimg {
     width: 100%;
-    height: 500px;
+    height: 70%;
     border-radius: 40px;
   }
 }

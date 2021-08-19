@@ -11307,6 +11307,28 @@ ul {
   background-color: white;
 }
 
+.card6 {
+  border: 0px;
+  box-shadow: #291d1d 1px 1px 1px 1px;
+  margin-top: 2px;
+  background-color: #f3f8fa;
+}
+
+.imagpaye {
+  display: flex;
+  justify-content: space-around;
+}
+.imagpaye img {
+  height: 120px;
+}
+
+.boutonpaye {
+  padding-right: 50px;
+  color: red;
+  font-size: 30px;
+  margin-top: 10px;
+}
+
 .btn-outline-primary {
   color: #141414;
   border-color: #0d6efd;

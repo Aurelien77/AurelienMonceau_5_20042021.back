@@ -118,6 +118,28 @@
   }
 }
 
+.card6 {
+  border: 0px;
+
+  box-shadow: rgb(41, 29, 29) 1px 1px 1px 1px;
+  margin-top: 2px;
+  background-color: rgb(243, 248, 250);
+}
+
+.imagpaye {
+  display: flex;
+  justify-content: space-around;
+  img {
+    height: 120px;
+  }
+}
+
+.boutonpaye {
+  padding-right: 50px;
+  color: red;
+  font-size: 30px;
+  margin-top: 10px;
+}
 .card-body {
 }
 .btn-outline-primary {

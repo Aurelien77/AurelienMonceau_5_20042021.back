@@ -39,10 +39,22 @@ function displayArticle(article) {
  document.getElementById("nomsours").textContent = article.name
   document.getElementById("prixours").textContent  = article.price / 100 + "€" 
   document.getElementById("imagesours").src = article.imageUrl;
+ 
+  for (const couleurs of article.colors) { 
+  document.getElementById("select").innerHTML +=  "<option>" + couleurs + "</option>";
 }  
 
-
-for (const couleur of article) {
-  document.getElementById("couleurs").innerHTML +=
-      "<option>" + couleur + "</option>";
 }
+
+
+/* (async function() {
+  const oursoncolor = article.colors()
+  
+  document.querySelector("select").innerHTML +=
+  "<option>" + oursoncolor + "</option>"; */
+  /* console.log(article) */
+
+  
+  /* console.log(o); */
+/* }) () */
+

@@ -11186,6 +11186,11 @@ ul {
   list-style-type: none;
 }
 
+.titre {
+  color: #e21b1b;
+  font-size: 40px;
+}
+
 .produit {
   width: 100%;
   border-radius: 30px;

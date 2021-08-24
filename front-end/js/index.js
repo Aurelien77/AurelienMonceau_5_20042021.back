@@ -62,8 +62,17 @@ const product_sheet = fetch("http://localhost:3000/api/teddies")
         }   
     });  
   
-  
-
+    localStorage.setItem (
+      "new4", "nouvelle3",
+     
+      )
+      window.onstorage = event =>  {
+        console.log(event)
+          }
+        window.addEventListener('storage', function(event) {
+        console.log(event)
+        
+        })
  
 
 

@@ -4,8 +4,14 @@
 @import "mixin";
 
 .titre {
-  color: rgb(226, 27, 27);
+  color: rgb(15, 15, 15);
   font-size: 40px;
+  text-align: center;
+}
+
+.titre2 {
+  color: rgb(245, 245, 248);
+  font-size: 20px;
 }
 
 .produit {

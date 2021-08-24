@@ -95,15 +95,10 @@
 
         <div class="imgpos"><img src="./image/ours.png" /></div>
       </ul>
-      <div class="container-page-produits"></div>
     </footer>
-    <script src="./js/produit.js"></script>
-    <script src="./js/produit_selection.js"></script>
-   
+
+    <script src="js/produit.js"></script>
+    <script src="js/panier.js"></script>
   </body>
-
+tion.js"></script>
 </html>
-
-
-
-

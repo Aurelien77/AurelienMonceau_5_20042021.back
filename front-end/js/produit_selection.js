@@ -46,7 +46,7 @@ const structureProduits2 =`
 
 <span>${idProduitSelectionner.name}</span>
         <span>${idProduitSelectionner.description}</span> 
- 
+        <span>${idProduitSelectionner.colors } €</span>
          <span>${idProduitSelectionner.price /100 } €</span>
   
 
@@ -121,8 +121,8 @@ let optionProduit = {
 // Stocker les valeurs séléctionnées dans le local storage 
 
 // Déclaration des variable produit enregistrer dans local storage
-let produitEnregistreDansLocalStorage = JSON.parse(localStorage.getItem("produit"));
-console.log(produitEnregistreDansLocalStorage);
+/* let produitEnregistreDansLocalStorage = JSON.parse(localStorage.getItem("produit"));
+console.log(produitEnregistreDansLocalStorage); */
 
 //fonction fenêtre pop up 
 /* const popupConfirmation = () =>{

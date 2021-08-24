@@ -1,3 +1,5 @@
+
+
 // récupération de la requête URL 
 
 const  queryString_url_id = window.location.search;
@@ -11,13 +13,13 @@ const urlSearchParams = new URLSearchParams(queryString_url_id);
 const id =   urlSearchParams.get("id");
 
 
-console.log(id); 
+/* console.log(id);  */
 
 
 
-let idProduitSelectionner = `http://localhost:3000/api/teddies/${id}`;
+const idProduitSelectionner = `http://localhost:3000/api/teddies/${id}`;
 
-let iterator =  fetch(idProduitSelectionner);
+const iterator =  fetch(idProduitSelectionner);
 
 iterator
   .then(response => response.json())
@@ -37,33 +39,16 @@ iterator
 const positionElement2 = document.querySelector(".container-page-produits");
 
 
+
 // structure html
 const structureProduits2 =`
 
 
-<div class="mise-en-page-produit">
-     
-        <div class="produit">
-          <ul>
-            <li>Nom produit : <span>${idProduitSelectionner.name}</span></li>
-           <li>Description :<span>${idProduitSelectionner.description}</span></li> 
+<span>${idProduitSelectionner.name}</span>
+        <span>${idProduitSelectionner.description}</span> 
  
-            <li>Prix :<span>${idProduitSelectionner.price /100 } €</span></li>
-          </ul>
-
-          <form>
-            <label for="option_produit">Choisir l'option :</label>
-            <select name="option_produit" id="option_produit">
-           
-            </select>
-          </form>
-          <button id="btn-envoyer" type="submit" name="btn-envoyer">
-            Ajouter l'article au panier
-          </button>
-        </div>
-      </div>
-
-
+         <span>${idProduitSelectionner.price /100 } €</span>
+  
 
 `;
 
@@ -93,7 +78,7 @@ positionElement2.innerHTML = structureProduits2;
 // injection html dans la page produit pour le choix des option  : 
 const positionElement3 = document.querySelector("#option_produit");
 positionElement3.innerHTML = structureOptions;
-console.log(positionElement3);
+/* console.log(positionElement3); */
 //----La gestion du panier
 //recup des données selectionné par l'utilsiateur + envoir au panier.
 

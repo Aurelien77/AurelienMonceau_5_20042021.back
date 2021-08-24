@@ -1,10 +1,14 @@
 
+
+
+
+//----------------------------------------------------
  /* création de la fonction articleid qui aura pour paramêtre 
  L'id retrouné par la fonction getArticleId */
  
  (async function() {
   const articleId = getArticleId()
-  console.log(articleId)
+/*   console.log(articleId) */
   const article = await getArticle(articleId)
   /* console.log(article) */
   displayArticle(article) 
@@ -46,7 +50,7 @@ function displayArticle(article) {
 
 }
 let produitEnregistreDansLocalStorage = JSON.parse(localStorage.getItem("produit"));
-console.log(produitEnregistreDansLocalStorage);
+/* console.log(produitEnregistreDansLocalStorage) */;
 
 /* localStorage.setItem (
   "Couleur", "selectedcolors",
@@ -145,5 +149,6 @@ Event.preventDefault();
 })
  */
 
+//---------------------------------------------------------
 
 

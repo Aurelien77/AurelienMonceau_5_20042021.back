@@ -46,186 +46,64 @@ function displayArticle(article) {
   document.getElementById("imagesours").src = article.imageUrl;
  
   for (const couleurs of article.colors) { 
-  document.getElementById("select").innerHTML +=  "<option value =1>" + couleurs + "</option>";
+  document.getElementById("option_produit").innerHTML +=  "<option value ='"+couleurs+"'>" + couleurs + "</option>";
 }  
 
 }
 
-
-
-
-// récupération de la requête URL 
-
-const  queryString_url_id = window.location.search;
-
-// On enlève le point d'interogation 
-
-
-const urlSearchParams = new URLSearchParams(queryString_url_id);
-
-// puis on met l'id dans une constante.
-const id =   urlSearchParams.get("id");
-
-
-
-const idProduitSelectionner = `http://localhost:3000/api/teddies/${id}`;
-
-const iterator =  fetch(idProduitSelectionner);
-
-iterator
-  .then(response => response.json())
- console.log(iterator);
-;
-
-
-
-
-
-// structure html
-/* const structureProduits =`
-
-
-<span>${idProduitSelectionner.name}</span>
-        <span>${idProduitSelectionner.description}</span> 
-        <span>${idProduitSelectionner.colors } €</span>
-         <span>${idProduitSelectionner.price /100 } €</span>
-  
-
-`; */
-
-
-//formulaire sadapte au nombre d'option produit 
-
-const optionQuantite = idProduitSelectionner;
-let structureOptions = [];
-
-
-//La boucle for pour afficher les options du produit 
-for (let j = 0; j < optionQuantite.length; j++) {
-
-structureOptions = structureOptions + `
-<option value="${optionQuantite[j]}">${optionQuantite[j]}</option>
-
-
-`;
-
+function roundToTwo(num) {    
+    return +(Math.round(num + "e+2")  + "e-2");
 }
-
-let produitEnregistreDansLocalStorage = JSON.parse(localStorage.getItem("produit"));
-
-
-
-// injection html dans la page produit pour le choix des option  : 
-const positionElement3 = document.querySelector("#option_produit");
-positionElement3.innerHTML = structureOptions;
-
-const idForm = document.querySelector("#option_produit");
-
-
-
-//Selection du bouton ajouter l'article au panier
-const btn_envoyerPanier = document.querySelector("#btn-envoyer");
-
-
-
 
 
 //Ecouter le bouton et envoyer au panier
-btn_envoyerPanier.addEventListener("click", (event) => {
-
-event.preventDefault();
-
-//mettre le choix de l'utilisateur dans une variable
-
-const choixForm = idForm.value;
-
-
-
-
-
-
-const ajoutProduitLocalStorage = ()  => {
-    //ajout dans le tableau de l'objet avec les values choisi par l'utilsiateur
-produitEnregistreDansLocalStorage.push(optionProduit);
-//La transformation en format JSON et l'envoyer dans la key "produit" du local storage
-localStorage.setItem("produit",JSON.stringify(produitEnregistreDansLocalStorage));
-}
-// json.parse convertire les données de json du local storage en objet javascrpit
-
-if(produitEnregistreDansLocalStorage){
-   
-    ajoutProduitLocalStorage();
-/* popupConfirmation(); */
-
-} // si il n'y a pas de prpduit enregistré dans local storage
-
-else {
-
-produitEnregistreDansLocalStorage = [];
-ajoutProduitLocalStorage();
-/* popupConfirmation(); */
-}
-
-
-
-});
-
-
-
-//Ecouter le bouton et envoyer au panier
-btn_envoyerPanier.addEventListener("click", (event) => {
+document.getElementById("btn-envoyer").addEventListener("click", (event) => {
 
   event.preventDefault();
-  
-  //mettre le choix de l'utilisateur dans une variable
-  
-  const choixForm = idForm.value;
+  const articleId = getArticleId();
+  const couleurChoisi = document.getElementById("option_produit").value;
+  var qte = parseInt(document.getElementById("qte_produit").value);
+
   
   // recuperation des valeurs du formulaire
   let optionProduit = {
-      nomProduit: idProduitSelectionner.name,
-      idProduitSelectionner: idProduitSelectionner._id,
-      option_produit : choixForm,
-      quantite: 1,
-      prix: idProduitSelectionner.price / 100,
-      }
+      nomProduit: document.getElementById("nomsours").textContent,
+      idProduitSelectionner: articleId,
+      option_produit : couleurChoisi,
+      quantite: qte,
+      prix: roundToTwo((parseInt(document.getElementById("prixours").textContent))*qte)
+	  }
       
     console.log(optionProduit);
-  
-  
-  // local storage 
+	
+	// definition de la nouvelle liste des produits a enregistrer
+	let nouvelleListeProduit = [];
 
-  
-  const ajoutProduitLocalStorage = ()  => {
-      //ajout dans le tableau de l'objet avec les values choisi par l'utilsiateur
-  produitEnregistreDansLocalStorage.push(optionProduit);
-  //La transformation en format JSON et l'envoyer dans la key "produit" du local storage
-  localStorage.setItem("produit",JSON.stringify(produitEnregistreDansLocalStorage));
-  }
-  // json.parse convertire les données de json du local storage en objet javascrpit
-  
-  if(produitEnregistreDansLocalStorage){
-     
-      ajoutProduitLocalStorage();
-  /* popupConfirmation(); */
-  
-  } // si il n'y a pas de prpduit enregistré dans local storage
-  
-  else {
-  
-  produitEnregistreDansLocalStorage = [];
-  ajoutProduitLocalStorage();
-  /* popupConfirmation(); */
-  }
-  
-  
+//test si le local storage n'est pas vide
+	if (localStorage !== null) {
+		//recuperations de la liste des produits deja enregistre dans le local storage
+		let produitEnregistreDansLocalStorage = JSON.parse(localStorage.getItem("produit"));
+		// copie de la liste des produit deja enregistre dans le local storage
+		nouvelleListeProduit = produitEnregistreDansLocalStorage;
+		
+		//parcourir la liste des produit deja enregistre
+		for (let indexTab in produitEnregistreDansLocalStorage) { 
+			//teste si le produit enregistré dans le local storage a le meme id que le produit que je veux enregistrer
+			if(produitEnregistreDansLocalStorage[indexTab].idProduitSelectionner.localeCompare(optionProduit.idProduitSelectionner) == 0){
+				//dans la copie de la liste des produits je retire ce produit que je veux enregister 
+				nouvelleListeProduit.splice(indexTab, 1);
+			}
+		}
+	}
+	
+	// tester si la nouvelle liste n'est pas nulle
+	if (nouvelleListeProduit !== null) {
+		nouvelleListeProduit.push(optionProduit);
+	}else{ //sinon c'est a dire elle est nulle ou vide
+		nouvelleListeProduit = [];
+		nouvelleListeProduit.push(optionProduit);
+	}
+	//finalement j'enregistre la nouvelle liste dans le localstorage
+	localStorage.setItem("produit",JSON.stringify(nouvelleListeProduit));
   
   });
-
-
-
-
-    
-//---------------------------------------------------------
-
-

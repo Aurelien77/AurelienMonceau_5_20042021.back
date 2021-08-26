@@ -1,6 +1,6 @@
 
 
-
+try {
 // ON STOCK L'ID récupéré dans l'URL dans une fonction Asynchrone
 //----------------------------------------------------
  // Objet n° 1- Objet getArticleId
@@ -111,7 +111,12 @@ document.getElementById("btn-envoyer").addEventListener("click", (event) => {
 		let produitEnregistreDansLocalStorage = JSON.parse(localStorage.getItem("produit")); //.parse permet de convertir les données JSON en JS, produit et le nom donnée à la clée dans le local storage
 		// copie de la liste des produit deja enregistre dans le local storage
 		nouvelleListeProduit = produitEnregistreDansLocalStorage;
-		
+
+
+
+
+
+    
 		//parcourir la liste des produit deja enregistre
 		/* for (let indexTab in produitEnregistreDansLocalStorage) {   // indextab ou I (...) est identique 
 			//teste si le produit enregistré dans le local storage a le meme id que le produit que je veux enregistrer
@@ -131,5 +136,20 @@ document.getElementById("btn-envoyer").addEventListener("click", (event) => {
 	}
 	//finalement j'enregistre la nouvelle liste dans le localstorage
 	localStorage.setItem("produit",JSON.stringify(nouvelleListeProduit)); //.stringify permet de convertir les données JS en JSON 
-  
+/*   popupConfirmation(); */
   });
+   /*  //fonction fenêtre pop up 
+    const popupConfirmation = () =>{
+      if(window.confirm( `${optionProduit.nomProduit} option : ${choixForm} à bien été ajouté au panier 
+          Consultez le panier OK ou revenir à l'accueil ANNULER` ))
+          {
+      window.location.href = "panier.html";
+          }else{
+      window.location.href = "index.html";
+          } 
+      } */
+} catch (error) {
+  console.error(error);
+  // expected output: ReferenceError: nonExistentFunction is not defined
+  // Note - error messages will vary depending on browser
+}

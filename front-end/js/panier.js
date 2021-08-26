@@ -1,14 +1,15 @@
 
-
-// Déclaration des variables produit enregistrer dans local storage
+//----------------------------------------------------
+ // n° 1- récupérer le local Storage
+// Déclaration d'une variable qui récupère les produits du local storage
 let produitEnregistreDansLocalStorage = JSON.parse(localStorage.getItem("produit"));
 console.log(produitEnregistreDansLocalStorage);
 
 // Affichage des produits du panier
-// Selectionner la classe ou injecter le code HTML
+// Selectionner la classe ou injecter le code HTML pour l'affichage des produits
 
 const positionElement3 = document.querySelector("#container-produits-panier");
-console.log(positionElement3);
+
 
 //Si le panier est vide : afficher le panier est vide
 
@@ -19,13 +20,14 @@ const paniervide = `
 `;
 positionElement3.innerHTML = paniervide;
 } else{
-    //si le panier n'est pas vide il faut afficher les porduit dans le local storage
-   let structureProduitPanier = [];
-for(k = 0; k < produitEnregistreDansLocalStorage.length; k++){
-    structureProduitPanier = structureProduitPanier + `
+    //si le panier n'est pas vide il faut afficher les porduit du storage
+   let structureProduitPanier = []; //On crée une liste vide 
+for(k = 0; k < produitEnregistreDansLocalStorage.length; k++){   //itération pour chaques éléments du JSON.parse(localStorage.getItem("produit").
+  // structureProduitPanier = structureProduitPanier +  peut être écrit  structureProduitPanier =+ injection du code html ( permet la création du div pour chaque itération)
+    structureProduitPanier = structureProduitPanier + `      
     <div class="container-recapitulatif">
 
-<div> Quantité - 1 - ${produitEnregistreDansLocalStorage[k].nomProduit} options : ${produitEnregistreDansLocalStorage[k].option_produit} </div>
+<div> Quantité - ${produitEnregistreDansLocalStorage[k].quantite} - ${produitEnregistreDansLocalStorage[k].nomProduit} options : ${produitEnregistreDansLocalStorage[k].option_produit} </div>
 
 <div>${produitEnregistreDansLocalStorage[k].prix} € - <button class="btn-supprimer">Supprimer </button>  </div>
 </div>
@@ -33,32 +35,39 @@ for(k = 0; k < produitEnregistreDansLocalStorage.length; k++){
 
 `; 
 }
+
+// injection HTML dans l'element #container-produits-panier
+
 if(k == produitEnregistreDansLocalStorage.length) {
-/* console.log(produitEnregistreDansLocalStorage.length) */
-// injection HTML dans la page panier 
+
+
 positionElement3.innerHTML = structureProduitPanier;
 }
 }
 
-//Séléction des ref boutons supprimer 
-let btn_supprimer = document.querySelectorAll(".btn-supprimer");
-console.log(btn_supprimer);
-// Selection de l'id qui va être supprimé 
-for (let b = 0; b < btn_supprimer.length; b++){
 
-btn_supprimer[b].addEventListener("click", (event) => {
-event.preventDefault();
+//----------------------------------------------------
+ // n° 2- La suppréssion des articles
+
+//Pointer el bouton supprimer 
+let btn_supprimer = document.querySelectorAll(".btn-supprimer");
+
+// Selection de l'id qui va être supprimé 
+for (let indexTab = 0; indexTab < btn_supprimer.length; indexTab++){
+
+btn_supprimer[indexTab].addEventListener("click", (event) => {
+ event.preventDefault(); 
 
    let id_selectionner_suppression = 
-   produitEnregistreDansLocalStorage[b].id_ProduitSelectionner;
-  /*  console.log(id_selectionner_suppression); */
+   localStorage.removeItem('idProduitSelectionner');
+/*    console.log(id_selectionner_suppression);  */
 
 // avec la méthode filter je séléctionne les éléments à garder et je supprime le btn cliqué
 
 produitEnregistreDansLocalStorage = produitEnregistreDansLocalStorage.filter( 
-(el) => el.id_ProduitSelectionner == id_selectionner_suppression
+(el) => el.idProduitSelectionner == id_selectionner_suppression
     );
-/* console.log(produitEnregistreDansLocalStorage); */
+ console.log(produitEnregistreDansLocalStorage); 
 
 // envoi au local storage
 localStorage.setItem(

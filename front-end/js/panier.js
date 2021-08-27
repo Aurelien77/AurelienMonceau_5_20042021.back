@@ -123,89 +123,296 @@ window.location.href = "panier.html";
 
 });
 
+
 const afficherFormulaireHtml = () => {
-// selection element dom
-const positionElement4 = document.querySelector("#container-produits-panier");
-
-const structureFormulaire = `
-<!--    Le formulaire dans le html-->
-<div id="formulaireCommande">
-
-<h2>Remplissez le formulaire pour valider la commande </h2>
-
-
-<form>
-<label for="prenom">Prénom : </label>
-<input type="text" id="prenom" name="prenom" required>
-
-<label for="nom">nom : </label>
-<input type="text" id="nom" name="nom" required>
-
-<label for="adresse">adresse : </label>
-<textarea  id="adresse" name="adresse" required>
-  </textarea>
-
-
-<label for="ville">ville: </label>
-<input type="text" id="ville" name="ville" required>
-
-<label for="codePostal">codePostal : </label>
-<input type="text" id="codePostal" name="codePostal" required>
-
-<label for="email">email: </label>
-<input type="text" id="email" name="email" required>
-<button id="envoyerFormulaire" type="submit" name="envoyerFormulaire">  
-  Confirmation de la commande
-</button>
-
-</form>
-
-</div>
-`;
-// injection html
-positionElement4.insertAdjacentHTML("afterend", structureFormulaire);
-};
-//Affichage du formulaire
-afficherFormulaireHtml();
-//---selection du bouton envoyer le formulaire
-const btnEnvoyerFormulaire = document.querySelector("#envoyerFormulaire");
-//----------addEventListener-----------
-btnEnvoyerFormulaire.addEventListener("click", (e)=>{
-    e.preventDefault();
-
-    const formulaireValues = {
-        prenom : document.querySelector("#prenom").value,
-        nom : document.querySelector("#nom").value,
-        adresse : document.querySelector("#adresse").value,
-        codePostal : document.querySelector("#codePostal").value,
-        email : document.querySelector("#email").value
+  // selection element dom
+  const positionElement4 = document.querySelector("#container-produits-panier");
+  
+  const structureFormulaire = `
+  <!--    Le formulaire dans le html-->
+  <div id="formulaireCommande">
+  
+  <h2>Remplissez le formulaire pour valider la commande </h2>
+  
+  
+  <form>
+  <label for="prenom">Prénom : </label> <span id="prenomManquant"> </span>
+  <input type="text" id="prenom" name="prenom" required>
+  
+  <label for="nom">nom : </label> </label> <span id="nomManquant"> </span>
+  <input type="text" id="nom" name="nom" required>
+  
+  <label for="adresse">adresse : </label> <span id="adresseManquant"> </span>
+  <textarea  id="adresse" name="adresse" required>
+    </textarea>
+  
+  
+  <label for="ville">ville: </label>  <span id="villeManquant"> </span>  
+  <input type="text" id="ville" name="ville" required>
+  
+  <label for="codePostal">codePostal : </label>  <span id="codePostalManquant"> </span>
+  <input type="text" id="codePostal" name="codePostal" required>
+  
+  <label for="email">email: </label>  <span id="emailManquant"> </span>
+  <input type="text" id="email" name="email" required>
+  <button id="envoyerFormulaire" type="submit" name="envoyerFormulaire">  
+    Confirmation de la commande
+  </button>
+  
+  </form>
+  
+  </div>
+  `;
+  // injection html
+  positionElement4.insertAdjacentHTML("afterend", structureFormulaire);
+  };
+  //Affichage du formulaire
+  afficherFormulaireHtml();
+  //---selection du bouton envoyer le formulaire
+  const btnEnvoyerFormulaire = document.querySelector("#envoyerFormulaire");
+  //----------addEventListener-----------
+  btnEnvoyerFormulaire.addEventListener("click", (e)=>{
+      e.preventDefault();
+  
+      const formulaireValues = {
+          prenom : document.querySelector("#prenom").value,
+          nom : document.querySelector("#nom").value,
+          adresse : document.querySelector("#adresse").value,
+          codePostal : document.querySelector("#codePostal").value,
+          email : document.querySelector("#email").value,
+          ville : document.querySelector("#ville").value
+      }
+      /* localStorage.setItem("prenom", document.querySelector("#prenom").value);
+      localStorage.setItem("nom", document.querySelector("#nom").value);
+      localStorage.setItem("adresse", document.querySelector("#adresse").value);
+      localStorage.setItem("ville", document.querySelector("#ville").value);
+      localStorage.setItem("codePostal", document.querySelector("#codePostal").value);
+      localStorage.setItem("email", document.querySelector("#email").value);
+      const formulaire = {
+          prenom : localStorage.getItem("prenom"),
+          nom : localStorage.getItem("nom"),
+          adresse : localStorage.getItem("adresse"),
+          codePostal : localStorage.getItem("codePostal"),
+          email : localStorage.getItem("email")
+          
+           */
+       //metre l'objet formulaire vlaue dans local storage
+      //----------------------------*****************************-------------
+  // Gestion validation du formulaire :
+  const textAlert = (value) => {
+  
+  return `${value} : chiffres et symboles ne sont pas autorisés \n Ne pas dépasser 20 caractères, \n minium 3 caractères`;
+  
+  
+  };
+  
+  const regExEmail = (value) => {
+    return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
+    
+    };
+  const regExAdresse = (value) => {
+      return /^[A-Za-z0-9\s]{5,50}$/.test(value);
+      
+      };
+    
+  
+  
+  const regExPrenomNomVille = (value) => {
+  return /^([A-Za-z]{3,20})?([-]{0,1})?([A-Za-z]{3,20})$/.test(value);
+  
+  };
+  
+  const regExNomVille = (value) => {
+    return /^[A-Za-z]{3,20}$/.test(value);
+    
+    };
+  
+  const regExcodePostal = (value) => {
+    return /^[0-9]{5}$/.test(value);
+    
+    };
+  
+   
+  
+  
+    function adresseControle() {
+      // contole de la validiter du prenom 
+      const leAdresse = formulaireValues.adresse;
+      dataChampManquantTextVide("adresseManquant");
+      if(regExAdresse(leAdresse)) {
+      console.log("OK");
+      return true;
+      } else {
+        dataChampManquantText("adresseManquant");
+        console.log("KO");
+        alert("L'adresse n'est pas valide");
+        return false;
+      }
+      };
+  
+  
+  
+    function emailControle() {
+      // contole de la validiter du prenom 
+      const leEmail = formulaireValues.email;
+      if(regExEmail(leEmail)) {
+        dataChampManquantTextVide("emailManquant");
+      return true;
+      } else {
+      
+        dataChampManquantText("emailManquant");
+        alert("L'email n'est pas valide");
+        return false;
+      }
+      };
+  
+  //fonction pour gérer l'affichage du text à coté de l'input pour indiquer de le emplir 
+  
+  function dataChampManquantTextVide(querySelectorId) {
+    document.querySelector(`#${querySelectorId}`).textContent = "";
+  
+  };
+  
+  function dataChampManquantText(querySelectorId) {
+    document.querySelector(`#${querySelectorId}`).textContent = "Veuillez bien remplir ce champs";
+  
+  };
+  
+  
+  function prenomControle() {
+  // contole de la validiter du prenom 
+  const lePrenom = formulaireValues.prenom;
+  if(regExPrenomNomVille(lePrenom)){
+   dataChampManquantTextVide("prenomManquant");
+  console.log("OK");
+  return true;
+  }else {
+    dataChampManquantText("prenomManquant");
+    alert(textAlert("Prénom"));
+    return false;
+  }
+  };
+  
+  
+  function villeControle() {
+    // contole de la validiter de la ville
+    const laville = formulaireValues.ville;
+    if(regExNomVille(laville)){
+     dataChampManquantTextVide("villeManquant");
+  
+    return true;
+    }else {
+      dataChampManquantText("villeManquant");
+     
+      alert(textAlert("ville"));
+      return false;
     }
-    /* localStorage.setItem("prenom", document.querySelector("#prenom").value);
-    localStorage.setItem("nom", document.querySelector("#nom").value);
-    localStorage.setItem("adresse", document.querySelector("#adresse").value);
-    localStorage.setItem("ville", document.querySelector("#ville").value);
-    localStorage.setItem("codePostal", document.querySelector("#codePostal").value);
-    localStorage.setItem("email", document.querySelector("#email").value);
-    const formulaire = {
-        prenom : localStorage.getItem("prenom"),
-        nom : localStorage.getItem("nom"),
-        adresse : localStorage.getItem("adresse"),
-        codePostal : localStorage.getItem("codePostal"),
-        email : localStorage.getItem("email")
-        
-         */
-     //metre l'objet formulaire vlaue dans local storage
-
-     localStorage.setItem("formulaireValues", JSON.stringify(formulaireValues)   );
-        //Mettre els valuer et produit selectionner dans un objet et envoyer vers serveur
-        const aEnvoyer = {
-produitEnregistreDansLocalStorage,
-formulaireValues
-        }
-      /*   console.log("aEnvoyer");
-        console.log(aEnvoyer); */
-        //envoi de l'objet envoyer vers le serveur
-
-})
-
-// mettre les valuers du formulaire dans un objet 
+    };
+    
+  
+  function codePostalControle() {
+    // contole de la validiter du code Postal
+    const lecodePostal = formulaireValues.codePostal;
+    if(regExcodePostal(lecodePostal)){
+      dataChampManquantTextVide("codePostalManquant");
+    return true;
+    }else {
+      dataChampManquantText("codePostalManquant");
+   
+      alert(textAlert("Code Postal : Doit être composé de 5 chiffres"));
+      return false;
+    }
+    };
+  
+  function nomControle() {
+    // contole de la validiter du prenom 
+    const lenom = formulaireValues.nom;
+    if(regExPrenomNomVille(lenom)){
+      dataChampManquantTextVide("nomManquant");
+    return true;
+    }else {
+    
+      dataChampManquantText("nomManquant");
+      alert(textAlert("Nom"));
+      return false;
+    }
+    };
+  
+  
+  
+  
+  
+  //controle validiter formulaire avant envoi dans le local storage
+  if(prenomControle() && nomControle() &&codePostalControle() && emailControle() &&adresseControle() &&villeControle() ){
+    localStorage.setItem("formulaireValues", JSON.stringify(formulaireValues));   
+  
+  } else {
+  
+  alert("Veuillez bien remplir le formulaire");
+  
+  }
+  
+  
+  //fin Gestion validation du formulaire :
+      //----------------------------*****************************-------------
+  
+      
+          //Mettre els valuer et produit selectionner dans un objet et envoyer vers serveur
+          const aEnvoyer = {
+  produitEnregistreDansLocalStorage,
+  formulaireValues
+          }
+        /*   console.log("aEnvoyer");
+          console.log(aEnvoyer); */
+          //envoi de l'objet envoyer vers le serveur
+  
+  const promise01 = fetch("http://localhost:3000/api/contact", {
+  
+            method: "POST",
+            body: JSON.stringify(aEnvoyer),
+            headers : {
+  "Content-Type" : "application/json",
+  },
+  });
+  console.log(promise01);
+  //Pour voir le resultat du serveur dans la console
+  promise01.then(async(response)=> {
+  try {
+    console.log("response");
+    console.log(response);
+  const contenu = await response.json();
+  console.log("contenu ");
+  console.log(contenu);
+  }catch(e) {
+    console.log(e);
+  
+  }
+  
+  
+  })
+  
+  //Pour voir ce qu'il y a réellement sur le serveur 
+  const promise02 = fetch("http://localhost:3000/api/contact")
+  promise02.then(async (response) => 
+  {
+  try {
+    const donneeSurServeur = await response.json()
+    console.log("promise02");
+  console.log(promise02);
+  } catch(e){
+  
+    console.log(e);
+  }
+  
+  
+  
+  })
+  
+  
+  
+  });
+  // mettre les valuers du formulaire dans un objet 
+  
+  
+  
+  

@@ -175,7 +175,9 @@ const afficherFormulaireHtml = () => {
   function envoieVersServeur(aEnvoyer){
   
   //Envoie de l'objet "a envoyer" vers le serveur
-  const promise01 = fetch("https://restapi.fr/api/commandeTest1", {
+   const promise01 = fetch("https://restapi.fr/api/commandeTest1", 
+
+/* const promise01 = fetch('http://localhost:3000/api/teddies/order',  */{   
   
     method: "POST",
     body: JSON.stringify(aEnvoyer),

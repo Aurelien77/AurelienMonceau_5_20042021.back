@@ -40,3 +40,10 @@ localStorage.removeItem(Key);
 enleverCleLocalStorage("prixTotal");
 enleverCleLocalStorage("produit");
 enleverCleLocalStorage("responseId");
+ 
+
+if (responseId == null || prixTotal == null)
+{
+    window.location.href= "index.html";
+
+}

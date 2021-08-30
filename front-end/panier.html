@@ -2,49 +2,41 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-
+    <link href="./image/icone.png" rel="shortcut icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="INDEX,FOLLOW" />
 
     <meta name="description" content="" />
     <link rel="stylesheet" href="css/style.css" />
 
-    <title>Bienvenue</title>
+    <title>Oribear</title>
   </head>
   <body>
     <header>
      
-        <nav class="flexnav">
-          <p class="menubout card5"> <a class="center" href="index.html">Boutique </a></p>
-          <div><img src="./image/devanture3.png" class="imgresize2" /></div>
-          <p class="menupanier card5"><a class="center" href="index.html">Panier</a></p>
+        <nav class="d-flex flex-column">
+        
+          <div> <a class="center" href="index.html"><img src="./image/devanture3.png" class="imgresize2" /></a></div>
+   
         </nav>
       </a>
 
-      <!--   <a class="center" href="index.html">
-        <nav>
-          <div class="imgresize">
-            <h1 class="titre">Boutique</h1>
-            <img src="./image/devanture3.png" />
-            <h1 class="titre">Panier</h1>
-          </div>
-        </nav>
-      </a> -->
     </header>
 
-    <main class="pad cent">
-      <section class="card card-body flexlign">
+    <main class="padding">
+      <h2 class="titre3">Les produits séléctionnés</h2>
+      <section class="card-body2 flexlign">
       
      
         <div class="container">
           <div class="grid">
            
   
+     
   
+          <div id="container-produits-panier" > 
   
-          <div id="container-produits-panier"> 
-  
-  <h2>Les produits séléctionnées</h2>
+
   
   
   </div>
@@ -52,14 +44,16 @@
       </section>
     </main>
     <footer>
-      <ul class="footer">
+      <ul class="footer flexlign">
         <div class="imgpos"><img src="./image/ours2.png" /></div>
 
-        <li>Contact</li>
-        <li>Mentions légals</li>
+        <li><a href="#">Contact</a></li>
+
+        <li><a href="#">Mentions légals</a></li>
 
         <div class="imgpos"><img src="./image/ours.png" /></div>
       </ul>
+      <div class="container-page-produits"></div>
     </footer>
     <script src="./js/panier.js"></script>
    

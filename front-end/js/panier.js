@@ -154,8 +154,8 @@ const afficherFormulaireHtml = () => {
   <input type="text" id="codePostal" name="codePostal" required>
   
   <label for="email">email: </label>  <span id="emailManquant"> </span>
-  <input type="text" id="email" name="email" required>
-  <button id="envoyerFormulaire" type="submit" name="envoyerFormulaire">  
+  <input type="text" id="email" name="email" required> <br>
+  <button id="envoyerFormulaire" type="submit" name="envoyerFormulaire" class="titre5 flexlign mt-3 mb-3 btn-primary" >  
     Confirmation de la commande
   </button>
   

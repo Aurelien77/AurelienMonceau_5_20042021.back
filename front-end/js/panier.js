@@ -131,7 +131,7 @@ const afficherFormulaireHtml = () => {
   const structureFormulaire = `
   <!--    Le formulaire dans le html-->
   <div id="formulaireCommande" class="gradient-custom">
-  
+
   <h2>Remplissez le formulaire pour valider la commande </h2>
   
   

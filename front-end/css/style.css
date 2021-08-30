@@ -1,4 +1,10 @@
 @charset "UTF-8";
+.bg-light {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+  border-radius: 20px;
+}
+
 .btn-outline-primary {
   color: #fff;
   margin: 0px;

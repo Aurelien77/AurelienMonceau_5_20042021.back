@@ -130,7 +130,7 @@ const afficherFormulaireHtml = () => {
   
   const structureFormulaire = `
   <!--    Le formulaire dans le html-->
-  <div id="formulaireCommande">
+  <div id="formulaireCommande" class="gradient-custom">
   
   <h2>Remplissez le formulaire pour valider la commande </h2>
   
@@ -139,7 +139,7 @@ const afficherFormulaireHtml = () => {
   <label for="prenom">Prénom : </label> <span id="prenomManquant"> </span>
   <input type="text" id="prenom" name="prenom" required>
   
-  <label for="nom">nom : </label> </label> <span id="nomManquant"> </span>
+  <label for="nom">nom : </label>  <span id="nomManquant"> </span>
   <input type="text" id="nom" name="nom" required>
   
   <label for="adresse">adresse : </label> <span id="adresseManquant"> </span>

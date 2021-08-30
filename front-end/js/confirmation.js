@@ -16,13 +16,13 @@ const positionElement5 =  document.querySelector("#container-recapitulatif-comma
 
 const structureConfirmationCommande = `
 
-<h2>Récapitulatid de votre commande</h2>
+<h2>Récapitulatif de votre commande</h2>
 <div class="recapCommande">
 <p>Merci pour votre commande</p>
 <p>
-Votre numéro de commande :<span>${responseId}</span></p>
-<p>Le montant de votre commande est de :<span>${prixTotal}</span>€</p>
-<p>A bientôt</p>
+Votre numéro de commande est le : <span>${responseId}</span></p>
+<p>Le montant de votre commande est de : <span>${prixTotal}</span>€</p>
+
 </div>
 `;
 

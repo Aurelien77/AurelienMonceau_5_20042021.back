@@ -2,8 +2,8 @@
 
 
 
-const responseId = localStorage.getItem("responseId");
-console.log(`responseId : ${responseId}`);
+const orderId = localStorage.getItem("responseId");
+console.log(`responseId : ${orderId}`);
 
 ///récupération du pric total du panier
 
@@ -20,7 +20,7 @@ const structureConfirmationCommande = `
 <div class="recapCommande">
 <p>Merci pour votre commande</p>
 <p>
-Votre numéro de commande est le : <span>${responseId}</span></p>
+Votre numéro de commande est le : <span>${orderId}</span></p>
 <p>Le montant de votre commande est de : <span>${prixTotal}</span>€</p>
 
 </div>
@@ -39,10 +39,10 @@ localStorage.removeItem(Key);
 
 enleverCleLocalStorage("prixTotal");
 enleverCleLocalStorage("produit");
-enleverCleLocalStorage("responseId");
+enleverCleLocalStorage("orderId");
  
 
-if (responseId == null || prixTotal == null)
+if (orderId == null || prixTotal == null)
 {
     window.location.href= "index.html";
 

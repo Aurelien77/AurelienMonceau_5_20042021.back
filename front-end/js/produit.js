@@ -112,19 +112,14 @@ document.getElementById("btn-envoyer").addEventListener("click", (event) => {
 		// copie de la liste des produit deja enregistre dans le local storage
 		nouvelleListeProduit = produitEnregistreDansLocalStorage;
 
-
-
-
-
-    
 		//parcourir la liste des produit deja enregistre
-		/* for (let indexTab in produitEnregistreDansLocalStorage) {   // indextab ou I (...) est identique 
+		 for (let indexTab in produitEnregistreDansLocalStorage) {   // indextab ou I (...) est identique 
 			//teste si le produit enregistré dans le local storage a le meme id que le produit que je veux enregistrer
 			if(produitEnregistreDansLocalStorage[indexTab].idProduitSelectionner.localeCompare(optionProduit.idProduitSelectionner) == 0){
 				//dans la copie de la liste des produits je retire ce produit que je veux enregister 
 				nouvelleListeProduit.splice(indexTab, 1);
 			}
-		} */
+		} 
 	}
 	
 	// tester si la nouvelle liste n'est pas nulle
@@ -136,18 +131,18 @@ document.getElementById("btn-envoyer").addEventListener("click", (event) => {
 	}
 	//finalement j'enregistre la nouvelle liste dans le localstorage
 	localStorage.setItem("produit",JSON.stringify(nouvelleListeProduit)); //.stringify permet de convertir les données JS en JSON 
-/*   popupConfirmation(); */
+   popupConfirmation(optionProduit);
   });
-   /*  //fonction fenêtre pop up 
-    const popupConfirmation = () =>{
-      if(window.confirm( `${optionProduit.nomProduit} option : ${choixForm} à bien été ajouté au panier 
+    //fonction fenêtre pop up 
+    const popupConfirmation = (optionProduit) =>{
+      if(window.confirm( `${optionProduit.nomProduit} option : ${optionProduit.option_produit} à bien été ajouté au panier 
           Consultez le panier OK ou revenir à l'accueil ANNULER` ))
           {
       window.location.href = "panier.html";
           }else{
       window.location.href = "index.html";
           } 
-      } */
+      } 
 } catch (error) {
   console.error(error);
   // expected output: ReferenceError: nonExistentFunction is not defined

@@ -1,18 +1,11 @@
 
 //----------------------------------------------------
- // n° 1- récupérer le local Storage
-// Déclaration d'une variable qui récupère les produits du local storage
-let produitEnregistreDansLocalStorage = JSON.parse(localStorage.getItem("produit"));
-//console.log(produitEnregistreDansLocalStorage);
-
+ // n° 1- Déclaration d'une variable qui récupère les produits du local storage
+let produitEnregistreDansLocalStorage = JSON.parse(localStorage.getItem("products"));
 // Affichage des produits du panier
 // Selectionner la classe ou injecter le code HTML pour l'affichage des produits
-
 const positionElement3 = document.querySelector("#container-produits-panier");
-
-
 //Si le panier est vide : afficher le panier est vide
-
 if(produitEnregistreDansLocalStorage === null || produitEnregistreDansLocalStorage == 0){
 const paniervide = `
 <div class="container-panier-vide">
@@ -22,96 +15,67 @@ positionElement3.innerHTML = paniervide;
 } else{
     //si le panier n'est pas vide il faut afficher les porduit du storage
    let structureProduitPanier = ""; //On crée une liste vide 
-for(k = 0; k < produitEnregistreDansLocalStorage.length; k++){   //itération pour chaques éléments du JSON.parse(localStorage.getItem("produit").
+for(k = 0; k < produitEnregistreDansLocalStorage.length; k++){   //itération pour chaques éléments JSON (localStorage.getItem("produit").
   // structureProduitPanier = structureProduitPanier +  peut être écrit  structureProduitPanier =+ injection du code html ( permet la création du div pour chaque itération)
     structureProduitPanier = structureProduitPanier + `    
     <div class="container-recapitulatif">
-
 <div> Quantité - ${produitEnregistreDansLocalStorage[k].quantite} - ${produitEnregistreDansLocalStorage[k].nomProduit} options : ${produitEnregistreDansLocalStorage[k].option_produit} </div>
-
 <div>${produitEnregistreDansLocalStorage[k].prix} € - <button class="btn-supprimer">Supprimer </button>  </div>
 </div>
-
-
 `; 
 }
-
 // injection HTML dans l'element #container-produits-panier
 positionElement3.innerHTML = structureProduitPanier;
-
 }
-
-
 //----------------------------------------------------
  // n° 2- La suppréssion des articles
-
 //recuperrer la liste des bouttons supprimer et cela va etre stocké sous forme de tableau
 let btn_supprimer = document.querySelectorAll(".btn-supprimer");
-
 // Selection de l'id qui va être supprimé 
 for (let indexTab = 0; indexTab < btn_supprimer.length; indexTab++){
-
 btn_supprimer[indexTab].addEventListener("click", (event) => {
  event.preventDefault(); 
-
-	// retrouver le produit dont on a cliqué sur supprimer
-   let id_selectionner_suppression = produitEnregistreDansLocalStorage[indexTab].idProduitSelectionner;
-   //localStorage.removeItem('idProduitSelectionner');
-/*    console.log(id_selectionner_suppression);  */
+// retrouver le produit dont on a cliqué sur supprimer
+let id_selectionner_suppression = produitEnregistreDansLocalStorage[indexTab].idProduitSelectionner;
 
 // avec la méthode filter je séléctionne les éléments à garder et je supprime le btn cliqué
-
 produitEnregistreDansLocalStorage = produitEnregistreDansLocalStorage.filter(el => el.idProduitSelectionner.localeCompare(id_selectionner_suppression) != 0);
- console.log(produitEnregistreDansLocalStorage); 
 
 // envoi au local storage
 localStorage.setItem(
-    "produit",
+    "products",
     JSON.stringify(produitEnregistreDansLocalStorage)
     );
-
 // alert suppression
 alert("Ce produit à été supprimer du panier");
 window.location.href = "panier.html";
 })
 };
 
-//----------------
 //----------- Le montant total du panier 
 // Déclaration de la variable pour pouvoir y mettre des prix 
 let prixTotalCalcul = [];
-// Aller cherche les prix dans le panier
+// Aller chercher les prix dans le panier
 for (let m = 0; m < produitEnregistreDansLocalStorage.length; m++){
 let prixProduitsDansLePanier = produitEnregistreDansLocalStorage[m].prix;
-prixTotalCalcul.push(prixProduitsDansLePanier)
-
-
-}
+prixTotalCalcul.push(prixProduitsDansLePanier)}
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
 const prixTotal = prixTotalCalcul.reduce(reducer,0);
 // Le code html du prix total à afficher : 
-
 const affichagePrixHtml = `<div class="affichage-prix-html"> Le prix total est de : ${prixTotal} €
 </div>`
 positionElement3.insertAdjacentHTML("beforeend", affichagePrixHtml);
-/* console.log(affichagePrixHtml); */
-
-//
 const btn_tous_supprimer_panier_html = `
-<button class="btn_tous_supprimer_panier_html"> vider le panier </button>
-
-` ;
+<button class="btn_tous_supprimer_panier_html"> vider le panier </button>` ;
 //insertion du bouton dans le html du panier
 positionElement3.insertAdjacentHTML("beforeend",btn_tous_supprimer_panier_html) ;
 // La séléection de la référence du bouton "btn_tous_supprimer_panier_html"
 const btn_tous_supprimer_panier = document.querySelector(".btn_tous_supprimer_panier_html");
-
-
 //suppression de la clé porduit du local storage pour vider le panier
 btn_tous_supprimer_panier.addEventListener('click', (e) => {            
 e.preventDefault();   
 //.removeItem pour vider le panier
-localStorage.removeItem("produit");
+localStorage.removeItem("products");
 alert("Le panier à été vidé");
 //rechargement de la page panier
 window.location.href = "panier.html";
@@ -163,16 +127,17 @@ const afficherFormulaireHtml = () => {
   };
   //Affichage du formulaire
   afficherFormulaireHtml();
+
   //---selection du bouton envoyer le formulaire
   const btnEnvoyerFormulaire = document.querySelector("#envoyerFormulaire");
   
-  //fonction envoi des données le serveur
+  //fonction envoi les données vers le serveur
   function envoieVersServeur(aEnvoyer){
   
   //Envoie de l'objet "a envoyer" vers le serveur
-  const promise01 = fetch("https://restapi.fr/api/commandeTest1", 
+  //const promise01 = fetch("https://restapi.fr/api/commandeTest1", 
 
-/* 	const promise01 = fetch('http://localhost:3000/api/teddies/order',  */ {   
+	const promise01 = fetch('http://localhost:3000/api/teddies/order',   {   
   
     method: "POST",
     body: JSON.stringify(aEnvoyer),
@@ -180,26 +145,15 @@ const afficherFormulaireHtml = () => {
   "Content-Type" : "application/json",
   },
   });
-  
-  //Pour voir le resultat du serveur dans la console
-  
-  
-  
   promise01.then(async(response)=> {
     try {
     
     const contenu = await response.json();
-    console.log("contenu");
-    console.log(contenu);
-    
+  
     if(response.ok){
     
-    console.log(`Résultat de réponse.ok : ${response.ok}`);
-    // Récupération de l'id de la response du serveur 
-  console.log("id de response");
-  console.log(contenu._id);
-  //mettre l'id dans le local storage 
-  localStorage.setItem("responseId",contenu._id);
+
+  localStorage.setItem("responseOrder",contenu.orderId);
   //aller vers la page confirmation commmande 
   window.location = "confirmation.html";
   
@@ -397,7 +351,7 @@ return true;
 //controle validiter formulaire avant envoi dans le local storage
 if(prenomControle() && nomControle() /* &&codePostalControle() */ && emailControle() &&adresseControle() &&villeControle() ){
 localStorage.setItem("contact", JSON.stringify(contact));   
-localStorage.setItem("prixTotal", JSON.stringify(prixTotal));   
+ localStorage.setItem("prixTotal", JSON.stringify(prixTotal));  
 
 //Mettre les valeurs et produit selectionner dans un objet et envoyer vers serveur
 const aEnvoyer = {

@@ -48,13 +48,16 @@ event.preventDefault();  //Pour ne pas changer de page au clic du bouton
  const nomprd = document.getElementById("nomsours").textContent;    // On notes .textcontent car on recupère du texte et non plus les valeurs.
  const prixXquantite = roundToTwo((parseInt(document.getElementById("prixours").textContent))*qte);
    //  Objet n° 6- Récupérer les valeurs du formulaire dans un objet
-  let optionProduit = {
+  
+  
+   let products = {
       nomProduit: nomprd,
       idProduitSelectionner: articleId,
       option_produit : couleurChoisi,
       quantite: qte,
       prix: prixXquantite
 	  }
+    
 // n° 7- Récupérer les valeurs dans le local storage puis définition d'une nouvelle liste des produits a enregistrer
 	let nouvelleListeProduit = [];
 //test si le local storage n'est pas vide
@@ -65,26 +68,26 @@ event.preventDefault();  //Pour ne pas changer de page au clic du bouton
 //parcourir la liste des produits deja enregistrés
 		 for (let indexTab in produitEnregistreDansLocalStorage) {   // indextab ou I (...) est identique 
 			//teste si le produit enregistré dans le local storage a le meme id que le produit que je veux enregistrer
-			if(produitEnregistreDansLocalStorage[indexTab].idProduitSelectionner.localeCompare(optionProduit.idProduitSelectionner) == 0){
+			if(produitEnregistreDansLocalStorage[indexTab].idProduitSelectionner.localeCompare(products.idProduitSelectionner) == 0){
 				//dans la copie de la liste des produits je retire ce produit que je veux enregister 
 				nouvelleListeProduit.splice(indexTab, 1);
 			}} }
 	// tester si la nouvelle liste n'est pas nulle
 	if (nouvelleListeProduit !== null) {
-		nouvelleListeProduit.push(optionProduit);
+		nouvelleListeProduit.push(products);
 	}else{ //sinon elle est vide
 		nouvelleListeProduit = [];
-		nouvelleListeProduit.push(optionProduit);
+		nouvelleListeProduit.push(products);
 	}
 	//finalement j'enregistre la nouvelle liste dans le localstorage
 	localStorage.setItem("products",JSON.stringify(nouvelleListeProduit)); //.stringify permet de convertir les données JS en JSON 
-   popupConfirmation(optionProduit);
+   popupConfirmation(products);
   });
 
   
     //fonction fenêtre pop up 
-    const popupConfirmation = (optionProduit) =>{
-      if(window.confirm( `${optionProduit.nomProduit} option : ${optionProduit.option_produit} à bien été ajouté au panier 
+    const popupConfirmation = (products) =>{
+      if(window.confirm( `${products.nomProduit} option : ${products.option_produit} à bien été ajouté au panier 
           Consultez le panier OK ou revenir à l'accueil ANNULER` ))
           {
       window.location.href = "panier.html";

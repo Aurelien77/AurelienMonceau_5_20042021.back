@@ -110,7 +110,7 @@ const afficherFormulaireHtml = () => {
   <input type="text" id="ville" name="ville" required>
   
   <label for="codePostal">codePostal : </label>  <span id="codePostalManquant"> </span>
-  <input type="text" id="codePostal" name="codePostal" required>
+  <input type="number" id="codePostal" name="codePostal" required>
   
   <label for="email">email: </label>  <span id="emailManquant"> </span>
   <input type="text" id="email" name="email" required> <br>
@@ -153,7 +153,7 @@ const afficherFormulaireHtml = () => {
     if(response.ok){
     
 
-  localStorage.setItem("responseOrder",contenu.orderId);
+  localStorage.setItem("responseId",contenu.orderId);
   //aller vers la page confirmation commmande 
   window.location = "confirmation.html";
   
@@ -180,13 +180,13 @@ const afficherFormulaireHtml = () => {
 btnEnvoyerFormulaire.addEventListener("click", (e)=>{
   e.preventDefault();
 
-  const contact = {  
+  const contact = {            
     firstName : document.querySelector("#prenom").value,
     lastName : document.querySelector("#nom").value,
     address: document.querySelector("#adresse").value,
      /*  codePostal : document.querySelector("#codePostal").value, */
-      email : document.querySelector("#email").value,
-      city : document.querySelector("#ville").value
+      city : document.querySelector("#ville").value,
+      email : document.querySelector("#email").value
   }
   /* localStorage.setItem("prenom", document.querySelector("#prenom").value);
   localStorage.setItem("nom", document.querySelector("#nom").value);
@@ -345,18 +345,32 @@ return true;
 };
 
 
-
+console.table(contact);
+console.log("contact");
+console.log(produitEnregistreDansLocalStorage.idProduitSelectionner);
+console.table(produitEnregistreDansLocalStorage);
 
 
 //controle validiter formulaire avant envoi dans le local storage
-if(prenomControle() && nomControle() /* &&codePostalControle() */ && emailControle() &&adresseControle() &&villeControle() ){
+if( prenomControle() && nomControle()  && emailControle()/* &&codePostalControle() */&&adresseControle()   &&villeControle()  ){
 localStorage.setItem("contact", JSON.stringify(contact));   
  localStorage.setItem("prixTotal", JSON.stringify(prixTotal));  
 
+ let products = [];
+ for(k = 0; k < produitEnregistreDansLocalStorage.length; k++) {
+
+products.push(produitEnregistreDansLocalStorage[k].idProduitSelectionner);
+
+ }
+
+
+
+
 //Mettre les valeurs et produit selectionner dans un objet et envoyer vers serveur
 const aEnvoyer = {
-  produitEnregistreDansLocalStorage,
+  products,
   contact
+ 
           };
     
 

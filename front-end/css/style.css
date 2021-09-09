@@ -11368,6 +11368,17 @@ ul {
   background-color: #f3f8fa;
 }
 
+.card7 {
+  width: 15%;
+  height: 50px;
+  border-radius: 20px;
+  box-shadow: #291d1d 1px 1px 1px 1px;
+  background-color: #f8f0f0;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
 .card-body2 {
   border: 0px;
   padding: 5%;

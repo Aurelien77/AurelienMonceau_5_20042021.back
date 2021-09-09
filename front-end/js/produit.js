@@ -84,7 +84,48 @@ event.preventDefault();  //Pour ne pas changer de page au clic du bouton
    popupConfirmation(products);
   });
 
-  
+  let produitEnregistreDansLocalStorage = JSON.parse(localStorage.getItem("products"));
+        let nombre_produit_dans_panier = JSON.parse(localStorage.getItem("products"));
+        // Affichage des produits du panier
+        // Selectionner la classe ou injecter le code HTML pour l'affichage des produits
+        const positionElement3 = document.querySelector("#nombre_panier");
+        //Si le panier est vide : afficher le panier est vide
+        if(nombre_produit_dans_panier === null || nombre_produit_dans_panier == 0){
+        const paniervide = `
+        <div class="flexlign"><div class="container-panier-vide card5 flexlign">
+       Le panier est vide  </div></div>
+        `;
+        positionElement3.innerHTML = paniervide;
+} else{
+    //si le panier n'est pas vide il faut afficher les porduit du storage
+
+let prixTotalCalcul = [];
+// Aller chercher les prix dans le panier
+for (let m = 0; m < produitEnregistreDansLocalStorage.length; m++){
+let prixProduitsDansLePanier = produitEnregistreDansLocalStorage[m].prix;
+prixTotalCalcul.push(prixProduitsDansLePanier)}
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+const prixTotal = prixTotalCalcul.reduce(reducer,0);
+// Le code html du prix total à afficher : 
+/* const affichagePrixHtml = `<div class="affichage-prix-html card7">  ${prixTotal} €
+</div>`
+positionElement3.insertAdjacentHTML("beforeend", affichagePrixHtml); */
+
+let produitsCalcul = [];
+// Aller chercher les prix dans le panier
+for (let i = 0; i < produitEnregistreDansLocalStorage.length; i++){
+let prixProduits = produitEnregistreDansLocalStorage[i].quantite;
+produitsCalcul.push(prixProduits)}
+const reducer2 = (accumulator, currentValue) => accumulator + currentValue;
+const quantTotal = produitsCalcul.reduce(reducer2,0);
+// Le code html du prix total à afficher : 
+const affichagequantite = `<div class="flexlign"><div class="affichage-quantite  card5 "> <a href="panier.html"> ${prixTotal} € et   ${quantTotal} article(s)
+&nbsp dans le panier  </a>
+
+
+</div></div>`
+positionElement3.insertAdjacentHTML("beforeend", affichagequantite);
+}
     //fonction fenêtre pop up 
     const popupConfirmation = (products) =>{
       if(window.confirm( `${products.nomProduit} option : ${products.option_produit} à bien été ajouté au panier 

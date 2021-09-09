@@ -37,9 +37,9 @@ localStorage.removeItem(Key);
 
 };
 
-enleverCleLocalStorage("prixTotal");
-enleverCleLocalStorage("produit");
-enleverCleLocalStorage("orderId");
+enleverCleLocalStorage("responseId");
+enleverCleLocalStorage("contact");
+enleverCleLocalStorage("products");
  
 
 if (orderId == null || prixTotal == null)

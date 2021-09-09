@@ -62,7 +62,7 @@ produitsCalcul.push(prixProduits)}
 const reducer2 = (accumulator, currentValue) => accumulator + currentValue;
 const quantTotal = produitsCalcul.reduce(reducer2,0);
 // Le code html du prix total à afficher : 
-const affichagequantite = `<div class="flexlign"><div class="affichage-quantite  card7 ">  ${prixTotal} € et   ${quantTotal} article(s) 
+const affichagequantite = `<div class="flexlign"><div class="affichage-quantite flexlign card7 ">  ${prixTotal} € et   ${quantTotal} article(s) 
 <a href="panier.html">&nbsp dans le panier  </a>
 
 

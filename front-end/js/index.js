@@ -1,7 +1,7 @@
 
 //La console indique en logs : 5 sections Teddies
 
-try {
+
 //création d'une requête vers l'api qui est une réponse au format .json
 const product_sheet = fetch("http://localhost:3000/api/teddies")
     .then((response) => {
@@ -25,7 +25,27 @@ CopieTemplate.getElementById("descriptionours").textContent= o.description;
  CopieTemplate.getElementById("link").href += "?id=" + o._id;
 //On copie celon le nombre d'itération le Template dans la div "sections"
 document.getElementById("sections").appendChild(CopieTemplate);
-        } });  
+        }
+}
+
+) // fin du .then 
+
+
+
+
+
+
+;  // fin de la fonction
+
+
+
+
+
+
+
+try {
+
+        
 
         let produitEnregistreDansLocalStorage = JSON.parse(localStorage.getItem("products"));
         let nombre_produit_dans_panier = JSON.parse(localStorage.getItem("products"));
@@ -33,7 +53,9 @@ document.getElementById("sections").appendChild(CopieTemplate);
         // Selectionner la classe ou injecter le code HTML pour l'affichage des produits
         const positionElement3 = document.querySelector("#nombre_panier");
         //Si le panier est vide : afficher le panier est vide
-        if(nombre_produit_dans_panier === null || nombre_produit_dans_panier == 0){
+        if(nombre_produit_dans_panier === null || nombre_produit_dans_panier == 0)
+        
+        {
         const paniervide = `
         <div class="flexlign"><div class="container-panier-vide card7 flexlign">
        Le panier est vide  </div></div>
@@ -68,12 +90,22 @@ const affichagequantite = `<div class="flexlign"><div class="affichage-quantite 
 
 </div></div>`
 positionElement3.insertAdjacentHTML("beforeend", affichagequantite);
+
+
+
+
 }
 
-   } catch (error) {
-      console.error(error);
-      // expected output: ReferenceError: nonExistentFunction is not defined
-      // Note - error messages will very depending on browser
-    }
+   
+}
+
+
+catch(e) {
+
+    console.log("ERREUR protocol comptage produits dans le panier ()");
+    console.log(e);
+    alert(`ERREUR de code ()${e}`);
+  
+  }
 
  

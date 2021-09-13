@@ -1,16 +1,34 @@
 
+/*     try {   */
 //La console indique en logs : 5 sections Teddies
+try {
+
 
 
 //création d'une requête vers l'api qui est une réponse au format .json
-const product_sheet = fetch("http://localhost:3000/api/teddies")
+const product_sheet = fetch("http://localhost:3000/api/teddies")  
+
     .then((response) => {
         return response.json();
     })
     // Itération sur la réponse 
+    
     .then((response) => {
         for (let o of response) {      //création d'une variable appelée "O" avec les résultats de l'itération de la requête.json
             console.log(o);
+            
+
+
+
+
+
+
+
+
+
+
+
+            
              //On pointe l'id "OursonTemplate"
             const Template = document.getElementById("OursonTemplate");
 //On crée une constante avec l'importation de tous les éléments HTML qui se trouvent dans "<template> .. .. </template>" (noeuds)
@@ -25,25 +43,38 @@ CopieTemplate.getElementById("descriptionours").textContent= o.description;
  CopieTemplate.getElementById("link").href += "?id=" + o._id;
 //On copie celon le nombre d'itération le Template dans la div "sections"
 document.getElementById("sections").appendChild(CopieTemplate);
-        }
+        } 
 }
-
+    
 ) // fin du .then 
 
+/* if(response.ok){
+    
+
+    console.log("ok");
+    
+      }else {
+        console.log(`Réponse du serveur : ${response.status}  `);
+        alert(`Problème avec la réponse du serveur : ${response.status}  ` )
+      
+      }
+      }catch(e) {
+        console.log("ERREUR qui vient du catch()");
+        console.log(e);
+        alert(`ERREUR qui vient du catch()${e}`);
+      
+      } */
+     
+      
+      
+    
+    ;
+    
+    
+    
 
 
 
-
-
-;  // fin de la fonction
-
-
-
-
-
-
-
-try {
 
         
 
@@ -106,6 +137,7 @@ catch(e) {
     console.log(e);
     alert(`ERREUR de code ()${e}`);
   
-  }
+  };
 
+  
  

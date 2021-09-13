@@ -1,6 +1,7 @@
 
 
 try {
+  
 // n° 1 stocke L'ID envoyé par L'URL --- 
  function getArticleId() {
   return new URL(location.href).searchParams.get('id')}

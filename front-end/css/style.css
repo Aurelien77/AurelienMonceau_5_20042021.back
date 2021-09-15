@@ -11234,6 +11234,10 @@ ul {
   border-radius: 20%;
 }
 
+.backgroundblue {
+  background-color: blue;
+}
+
 .padding {
   padding-right: 20%;
   padding-left: 20%;
@@ -11374,6 +11378,7 @@ ul {
   height: 50px;
   border-radius: 20px;
   box-shadow: #291d1d 1px 1px 1px 1px;
+  color: black;
   background-color: #f8f0f0;
   display: flex;
   align-content: center;

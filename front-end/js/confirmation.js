@@ -40,6 +40,7 @@ localStorage.removeItem(Key);
 enleverCleLocalStorage("responseId");
 enleverCleLocalStorage("contact");
 enleverCleLocalStorage("products");
+enleverCleLocalStorage("prixTotal");
  
 
 if (orderId == null || prixTotal == null)
